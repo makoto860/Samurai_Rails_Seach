@@ -2,11 +2,8 @@ Rails.application.routes.draw do
   get 'pages/home'
   get 'pages/search'
   get 'books/confirm'
-  resources :books do
-    collection do
-      get 'search'
-    end
-  end
+  get 'books/search', to: 'books#search'
+  resources :books
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

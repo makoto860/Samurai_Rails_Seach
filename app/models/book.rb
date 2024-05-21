@@ -1,9 +1,9 @@
 class Book < ApplicationRecord
   def self.search(search)
-    if search != ""
-      Book.where(['title LIKE(?) OR content LIKE(?)', "#{search}%", "#{search}%"])
+    if search.present?
+      where('title ILIKE ? OR content ILIKE ?', "%#{search}%", "%#{search}%")
     else
-      book.all
+      all
     end
   end
 end
