@@ -3,11 +3,6 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
-  def search
-    @books = Book.search(params[:keyword])
-    render 'index'
-  end
-
   def new
     @book = Book.new
   end
@@ -53,5 +48,6 @@ class BooksController < ApplicationController
   private
     def search
       @books = Book.search(params[:keyword])
-  end
+      render 'index'
+    end
 end
