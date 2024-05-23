@@ -3,6 +3,10 @@ class BooksController < ApplicationController
     @books = Book.all
   end
 
+  def search
+    @books = Book.search(params[:keyword])
+  end
+
   def new
     @book = Book.new
   end
@@ -44,10 +48,4 @@ class BooksController < ApplicationController
     flash[:notice] = "ブックを削除しました"
     redirect_to :root
   end
-  
-  private
-    def search
-      @books = Book.search(params[:keyword])
-      render 'index'
-    end
 end

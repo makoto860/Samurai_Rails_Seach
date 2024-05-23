@@ -1,9 +1,9 @@
 class Book < ApplicationRecord
   def self.search(search)
-    if search.present?
-      where('title ILIKE ? OR content ILIKE ?', "%#{search}%", "%#{search}%")
+    if search != ""
+      Book.where(['title LIKE(?) OR content LIKE(?)', "%#{search}%", "%#{search}%"])
     else
-      all
+      Book.includes(:book).order('created_at DESC')
     end
   end
 end
